@@ -8,6 +8,11 @@
             <span th:text="#{label.category}">Category</span>
         </div>
         <div class="box-content">
+            <th:block th:each="category : ${categories}">
+                <a th:href="@{'/' + ${category.name}}" class="inline-item">
+                    <span th:text="${category.name}"></span>
+                </a>
+            </th:block>
             <a href="category" class="inline-item">
                 <span>category</span>
             </a>

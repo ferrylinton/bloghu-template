@@ -4,6 +4,7 @@ var Fragment = (function () {
     function load(element, template) {
         element.load(template, function (responseText, textStatus, jqXHR) {
             console.log(`load ${template} is ${textStatus}`);
+            $('.box-content').find('th\\:block').hide();
         });
     }
 

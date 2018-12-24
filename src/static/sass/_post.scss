@@ -1,0 +1,22 @@
+.post-item{
+	padding: 8px 0;
+	border-bottom:1px solid $gray-200;
+}
+.post-item p{
+	margin-bottom: 0;	
+}
+.post-item h4{
+    padding-top: 5px;
+	font-size: 18px;
+	font-weight: bold;
+}
+.post-item h5 .icon-calendar, .post-item h5 span{
+	font-size: 12px;
+	font-weight: normal;
+	margin-right: 8px;
+	color: $red;
+	line-height: 1;
+}
+.post-item + .pager{
+	margin-top: 15px;
+}

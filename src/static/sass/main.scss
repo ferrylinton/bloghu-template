@@ -3,6 +3,7 @@
 @import 'jquery-confirm';
 @import 'navbar';
 @import 'box';
+@import 'post';
 @import 'login';
 
 html {
@@ -11,7 +12,7 @@ html {
 
 body {
 	margin: 0;
-	padding: 0;
+	padding: 0 0 20px 0;
 	padding-top: 70px;
 	background-color: $gray-200;
 }
