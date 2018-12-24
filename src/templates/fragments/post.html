@@ -4,7 +4,7 @@
 <body>
 	<div class="box box-main" th:fragment="content (page, url)">
 		<div class="box-title">
-			<i class="icon-doc-text"></i>
+			<i class="icon-docs"></i>
 			<span th:text="#{label.post}">Post</span>
 		</div>
 		<div class="box-content">
@@ -77,12 +77,12 @@
 				</p>
 			</div>
 			<div class="pager clearfix">
-				<a class="btn btn-sm btn-secondary float-left" th:href="@{${url}(page=${page.number-1},size=${page.size})}"
+				<a class="btn btn-sm btn-light float-left" th:href="@{${url}(page=${page.number-1},size=${page.size})}"
 				 th:classappend="${page.hasPrevious()} ? '' : 'disabled'">
 					<i class="icon-left-open-outline"></i>
 					<span th:text="#{label.previous}">Previous</span>
 				</a>
-				<a class="btn btn-sm btn-secondary float-right" th:href="@{${url}(page=${page.number+1},size=${page.size})}"
+				<a class="btn btn-sm btn-light float-right" th:href="@{${url}(page=${page.number+1},size=${page.size})}"
 				 th:classappend="${page.hasNext()} ? '' : 'disabled'">
 					<span th:text="#{label.next}">Next</span>
 					<i class="icon-right-open-outline"></i>
