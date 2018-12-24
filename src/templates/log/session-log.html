@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{sessionlog.title})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="box box-main">
+			<div class="box-title">
+				<i class="fa fa-gear"></i>
+				<span th:text="#{sessionlog.menu}"></span>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-sm table-hover table-bordered table-striped">
+					<thead>
+						<tr>
+							<th><span>#</span></th>
+							<th><span th:text="#{sessionlog.principal}"></span></th>
+							<th><span th:text="#{sessionlog.sessionId}"></span></th>
+							<th><span th:text="#{sessionlog.lastRequest}"></span></th>
+							<th><span th:text="#{sessionlog.expired}"></span></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sessionlog,rowStat : ${page}" th:if="${page.getTotalElements() > 0}">
+							<td th:text="${rowStat.count + (page.number * page.size)}"></td>
+							<td th:text="${sessionlog.principal}"></td>
+							<td th:text="${sessionlog.sessionId}"></td>
+							<td th:text="${#dates.format(sessionlog.lastRequest, 'dd-MM-yyyy hh:mm')}"></td>
+							<td>
+								<span class="badge badge-dark" th:if="${sessionlog.expired}" th:text="#{label.yes}"></span>
+								<span class="badge badge-success" th:if="${!sessionlog.expired}" th:text="#{label.no}"></span>
+							</td>
+							<td>
+								<a href="#" th:onclick="'return showDialog(\'' + @{'/log/session/' + ${sessionlog.sessionId}} + '\',\'' + #{message.delete-session} + '\')'">
+									<i class="fa fa-lg fa-sign-out"></i>
+								</a>
+							</td>
+						</tr>
+						<tr th:if="${page.getTotalElements() == 0}">
+							<td colspan="6" class="no-data">
+								<span th:text="#{message.no-data}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+	<div th:replace="fragments/dialog.html :: confirm-dialog"></div>
+</body>
+</html>

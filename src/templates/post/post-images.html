@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="content" th:remove="tag">
+		<button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#upload-dialog">Upload Image</button>
+	 	<div class="row text-center text-lg-left">
+	 		<div class="col-4 col-sm-4 col-md-12 col-lg-6 col-xl-6" th:each="postImage : ${postImages}">
+				<div class="image-container">
+					<div class="image">
+						<img th:src="${postImage.imageText}" th:title="${postImage.id.name}">
+						<div class="toolbar">
+					   		<a class="text-danger" href="#" th:onclick="${'return deleteImage(''' + postImage.id.id + ''',''' + postImage.id.name + ''')'}">
+								<i class="fa fa-lg fa-trash"></i>
+							</a>
+							<a class="text-dark" href="#">
+								<i class="fa fa-lg fa-eye"></i>
+							</a>
+					  	</div>
+					</div>
+				</div>
+			</div>
+	 	</div>
+	</div>
+</body>
+</html>

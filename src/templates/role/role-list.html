@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.role})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="box box-main">
+			<div class="box-title">
+				<i class="fa fa-database"></i> <span th:text="#{menu.role}"></span>
+			</div>
+			<div class="toolbar clearfix">
+				<div th:replace="fragments/search.html :: search (@{/data/role})"></div>
+				<div class="float-right">
+					<a class="btn btn-sm btn-primary" th:href="@{/data/role/form}">
+		         		<i class="fa fa-plus"></i>
+					</a>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-sm table-hover" >
+					<thead>
+						<tr>
+							<th width="40px">#</th>
+							<th th:utext="${@linkService.sortLink('name')}"></th>
+							<th width="60px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="role,row : ${page}" th:if="${page.getTotalElements() > 0}">
+							<td th:text="${row.count + (page.number * page.size)}"></td>
+							<td th:text="${role.name}"></td>
+							<td class="action">
+								<a class="text-danger" href="#" th:onclick="'return showDialog(\'' + @{'/data/role/' + ${role.id}} + '\',\'' + #{message.delete-data} + '\')'">
+									<i class="fa fa-trash"></i>
+								</a>
+								<a class="text-dark" th:href="@{'/data/role/form/' + ${role.id}}">
+									<i class="fa fa-edit"></i>
+								</a>
+							</td>
+						</tr>
+						<tr th:if="${page.getTotalElements() == 0}">
+							<td th:colspan="3" class="no-data">
+								<span th:text="#{message.no-data}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="toolbar" th:if="${page.getTotalElements() > 0}">
+				<div th:utext="${@linkService.previousLink()}" th:remove="tag"></div>
+				<div th:utext="${@linkService.nextLink()}" th:remove="tag"></div>
+	      	</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+	<div th:replace="fragments/template.html :: toast"></div>
+	<div th:replace="fragments/dialog.html :: confirm-dialog"></div>
+</body>
+</html>

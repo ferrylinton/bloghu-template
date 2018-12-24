@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.register})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row justify-content-center align-items-center">
+				<div class="col col-sm-9 col-md-7 col-lg-5 col-xl-5">
+			 		<div class="box box-register">
+			 			<div class="alert alert-success" role="alert">
+							<span th:text="#{message.register-success}"></span>
+						</div>
+						<a class="btn btn-sm btn-primary" th:href="@{login}">
+							<i class="fa fa-sign-in"></i>
+							<span th:text="#{menu.login}"></span>
+						</a>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

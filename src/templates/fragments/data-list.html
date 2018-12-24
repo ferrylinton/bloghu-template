@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<!-- DATA LIST -->
+	<div class="box box-main" th:fragment="datalist (entity)">
+		<div class="toolbar clearfix">
+			<form class="float-left" th:action="@{'/data/' + ${entity}(page=0,size=${page.size},sort=${order.property + ',' + order.direction})}" method="get" onsubmit="return toolbarSearch(this);">
+				<input class="form-control keyword" id="keyword" name="keyword" th:value="${keyword}" th:placeholder="#{label.search}" type="text">
+				<button type="submit" class="btn btn-sm btn-secondary fixed-width">
+					<i class="fa fa-search"></i>
+				</button>
+				<a class="btn btn-sm btn-secondary fixed-width" th:href="@{'/data/' + ${entity}}">
+	         		<i class="fa fa-refresh"></i>
+				</a>
+			</form>
+			<div class="float-right">
+				<a class="btn btn-sm btn-primary fixed-width" th:href="@{'/data/' + ${entity} + '/form'}">
+	         		<i class="fa fa-plus"></i>
+				</a>
+			</div>
+		</div>
+		<div class="alert alert-danger" role="alert" th:if="${page.getTotalElements() == 0}">
+			<i class="fa fa-warning"></i> <span th:text="#{message.empty-data}"></span>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-sm table-hover table-bordered table-striped" th:if="${page.getTotalElements() > 0}">
+				<thead>
+					<tr>
+						<th><span th:text="#{label.number}"></span></th>
+						<th:block th:each="field : ${fields}">
+						    <th th:if="${field.key} != 'id'">
+						    	<a	th:class="${field.value.getSortClass(order)}"
+						    		th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=${page.size},sort=${field.value.getSortValue(order)})}">
+						    		<span th:text="#{'entity.' + ${field.key}}"></span>
+						    	</a>
+						    </th>
+						</th:block>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="data,rowStat : ${page}">
+						<td th:text="${rowStat.count + (page.number * page.size)}"></td>
+						<th:block th:each="field : ${fields}">
+						    <td th:if="${field.key} != 'id'">
+						    	<span th:if="${field.value.isString()}" th:text="${data[field.key]}"></span>
+						    	<span th:if="${field.value.isDate()}" th:text="${#dates.format(data[field.key], 'dd-MM-yyyy')}"></span>
+						    </td>
+						</th:block>
+						<td>
+							<a th:href="@{'/data/' + ${entity} + '/' + ${data.id}}">
+								<i class="fa fa-edit"></i>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="toolbar clearfix">
+			<div class="float-left">
+				<div class="btn-group dropup">
+				  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <span th:text="#{label.sort.by}"></span> <em th:text="#{'entity.' + ${order.property}}"></em>
+				  </button>
+				  <div class="dropdown-menu">
+				  	<th:block th:each="field : ${fields}">
+					    <a th:if="${field.key} != 'id'" class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=${page.size},sort=${field.key + ',' + order.direction})}">
+					    	<span th:text="#{'entity.' + ${field.key}}"></span>
+					    </a>
+				    </th:block>
+				  </div>
+				</div>
+				<div class="btn-group dropup">
+				  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <i th:class="${#strings.toString(order.direction) == 'DESC' ? 'fa fa-sort-alpha-desc' : 'fa fa-sort-alpha-asc'}"></i>
+				  </button>
+				  <div class="dropdown-menu">
+				    <a class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=${page.size},sort=${order.property + ',ASC'})}"><i class="fa fa-sort-alpha-asc"></i> <span th:text="#{label.asc}"></span></a>
+				  	<a class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=${page.size},sort=${order.property + ',DESC'})}"><i class="fa fa-sort-alpha-desc"></i> <span th:text="#{label.desc}"></span></a>
+				  </div>
+				</div>
+				<div class="btn-group dropup">
+				  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <em th:text="${page.size}"></em> <span th:text="#{label.entries}"></span>
+				  </button>
+				  <div class="dropdown-menu">
+				  	<a class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=5,sort=${order.property + ',' + order.direction})}"> 5 <span th:text="#{label.entries}"></span></a>
+				  	<a class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=10,sort=${order.property + ',' + order.direction})}">10 <span th:text="#{label.entries}"></span></a>
+				  	<a class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=15,sort=${order.property + ',' + order.direction})}">15 <span th:text="#{label.entries}"></span></a>
+				  	<a class="dropdown-item" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number},size=20,sort=${order.property + ',' + order.direction})}">20 <span th:text="#{label.entries}"></span></a>
+				  </div>
+				</div>
+			</div>
+			<div class="float-right">
+				<a class="btn btn-sm btn-secondary fixed-width" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number-1},size=${page.size},sort=${order.property + ',' + order.direction})}" th:classappend="${page.hasPrevious()} ? '' : 'disabled'">
+					<i class="fa fa-chevron-left"></i>
+				</a>
+         		<a class="btn btn-sm btn-secondary fixed-width" th:href="@{'/data/' + ${entity}(keyword=${keyword},page=${page.number+1},size=${page.size},sort=${order.property + ',' + order.direction})}" th:classappend="${page.hasNext()} ? '' : 'disabled'">
+         			<i class="fa fa-chevron-right"></i>
+				</a>
+			</div>
+      	</div>
+	</div>
+</body>
+</html>

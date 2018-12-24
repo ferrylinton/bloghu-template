@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{label.about})"></head>
+<body>
+	<div id="header" th:replace="fragments/template.html :: header"></div>
+	<div id="sidebar-fixed" th:include="fragments/template.html :: sidebar"></div>
+	<div class="wrapper">
+		<div id="sidebar" th:include="fragments/template.html :: sidebar"></div>
+		<div id="content">
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

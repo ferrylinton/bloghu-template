@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{label.search})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="row no-gutters">
+			<div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+				<div class="box box-search">
+					<form th:action="@{search}" method="get">
+				    	<div class="input-group">
+				      		<input class="form-control" th:name="keyword" th:value="${param.keyword}" th:placeholder="#{label.search}" type="text">
+				      		<div class="input-group-btn">
+				        		<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+				      		</div>
+				    	</div>
+		 			</form>
+		 			<div class="search-info" th:if="${#strings.isEmpty(param.keyword)}">
+		 				<p th:text="#{message.search-info}"></p>
+		 			</div>
+		 			<div th:if="${not #strings.isEmpty(param.keyword)}" th:remove="tag">
+		 				<div th:replace="fragments/tutorial-list.html :: tutorial (${page}, '/search?keyword=' + ${keyword})"></div>
+		 			</div>
+				</div>
+			</div>
+			<div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+				<div th:replace="fragments/template.html :: tags"></div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

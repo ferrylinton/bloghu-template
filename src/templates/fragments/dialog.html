@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div class="modal fade" id="confirm-dialog" th:fragment="confirm-dialog">
+		<div class="modal-dialog modal-sm">
+	      	<div class="modal-content">
+	      		<form action="#" method="post">
+			        <div class="modal-body">
+			          <span id="confirm-message"></span>
+			        </div>
+			        <div class="modal-footer">
+			        	<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+			        		<span th:text="#{label.no}"></span>
+			        	</button>
+			       		<button class="btn btn-sm btn-primary" type="submit">
+			       			<span th:text="#{label.yes}"></span>
+			       		</button>
+			        </div>
+			    </form>
+	      	</div>
+	    </div>
+	</div>
+	
+	<div class="modal fade" id="upload-dialog" th:fragment="upload-dialog(url)">
+		<div class="modal-dialog modal-sm">
+	      	<div class="modal-content">
+	      		<div class="modal-body">
+		          	<form th:action="${url}" method="post">
+			      		<input type="file" name="file">
+			    	</form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+		        		<span th:text="#{label.cancel}"></span>
+		        	</button>
+		       		<button type="button" class="btn btn-sm btn-primary" onclick="uploadImage()">
+		       			<span th:text="#{label.upload}"></span>
+		       		</button>
+		        </div>
+	      	</div>
+	    </div>
+	</div>
+	
+	<div class="modal fade" id="image-dialog" th:fragment="image-dialog">
+		<div class="modal-dialog modal-sm">
+	      	<div class="modal-content">
+	      		<div class="modal-body">
+	      			<div class="image-details"></div>
+	      		</div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
+		        		<span th:text="#{label.close}"></span>
+		        	</button>
+		        </div>
+	      	</div>
+	    </div>
+	</div>
+	
+</body>
+</html>

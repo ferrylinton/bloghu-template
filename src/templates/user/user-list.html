@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.user})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="box box-main">
+			<div class="box-title">
+				<i class="fa fa-database"></i> <span th:text="#{menu.user}"></span>
+			</div>
+			<div class="toolbar clearfix">
+				<div th:replace="fragments/search.html :: search (@{/data/user})"></div>
+				<div class="float-right">
+					<a class="btn btn-sm btn-primary fixed-width" th:href="@{'/data/user/form'}">
+		         		<i class="fa fa-plus"></i>
+					</a>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-sm table-hover" >
+					<thead>
+						<tr>
+							<th width="40px">#</th>
+							<th width="150px" th:utext="${@linkService.sortLink('username')}"></th>
+							<th width="200px" th:utext="${@linkService.sortLink('email')}"></th>
+							<th width="100px" th:utext="${@linkService.sortLink('activated')}"></th>
+							<th th:utext="${@linkService.sortLink('role.name')}"></th>
+							<th width="90px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user,row : ${page}" th:if="${page.getTotalElements() > 0}">
+							<td th:text="${row.count + (page.number * page.size)}"></td>
+							<td th:text="${user.username}"></td>
+							<td th:text="${user.email}"></td>
+							<td>
+								<i class="fa fa-lg fa-check text-success" th:if="${user.activated}"></i>
+								<i class="fa fa-lg fa-close text-danger" th:if="${!user.activated}"></i>
+							</td>
+							<td th:text="${user.role == null ? '-' : user.role.name}"></td>
+							<td class="action">
+								<a class="text-danger" href="#" th:onclick="'return showDialog(\'' + @{'/data/user/' + ${user.id}} + '\',\'' + #{message.delete-data} + '\')'">
+									<i class="fa fa-trash"></i>
+								</a>
+								<a class="text-dark" th:href="@{'/data/user/form/' + ${user.id}}">
+									<i class="fa fa-edit"></i>
+								</a>
+								<a class="text-dark" th:href="@{'/password/' + ${user.username}}">
+									<i class="fa fa-lock"></i>
+								</a>
+							</td>
+						</tr>
+						<tr th:if="${page.getTotalElements() == 0}">
+							<td th:colspan="6" class="no-data">
+								<span th:text="#{message.no-data}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="toolbar" th:if="${page.getTotalElements() > 0}">
+				<div th:utext="${@linkService.previousLink()}" th:remove="tag"></div>
+				<div th:utext="${@linkService.nextLink()}" th:remove="tag"></div>
+	      	</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+	<div th:replace="fragments/template.html :: toast"></div>
+	<div th:replace="fragments/dialog.html :: confirm-dialog"></div>
+</body>
+</html>

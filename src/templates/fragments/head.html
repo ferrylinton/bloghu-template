@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="content (title)">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" th:content="#{application.description}" />
+<meta name="author" th:content="#{application.author}" />
+<meta name="contextPath" th:content="@{/}" />
+<title th:text="${title}"></title>
+<link th:href="@{/image/favicon.ico}"rel="shorcut icon" />
+<link th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<body>
+</body>
+</html>

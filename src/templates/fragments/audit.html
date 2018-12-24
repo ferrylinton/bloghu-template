@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="audit (data)" th:remove="tag">
+		<div class="form-group" th:if="${data.createdBy != null}">
+			<label for="createdBy" th:text="#{label.createdBy}"></label> 
+			<input class="form-control" type="text" th:field="*{createdBy}" readonly="readonly" />
+		</div>
+		<div class="form-group" th:if="${data.createdDate != null}">
+			<label for="createdDate" th:text="#{label.createdDate}"></label> 
+			<input class="form-control" type="text" th:value="${#dates.format(data.createdDate)}" readonly="readonly" />
+		</div>
+		<div class="form-group" th:if="${data.lastModifiedBy != null}">
+			<label for="lastModifiedBy" th:text="#{label.lastModifiedBy}"></label> 
+			<input class="form-control" type="text" th:field="*{lastModifiedBy}" readonly="readonly" />
+		</div>
+		<div class="form-group" th:if="${data.lastModifiedDate != null}">
+			<label for="lastModifiedDate" th:text="#{label.lastModifiedDate}"></label> 
+			<input class="form-control" type="text" th:value="${#dates.format(data.lastModifiedDate)}" readonly="readonly" />
+		</div>
+	</div>
+</body>
+</html>

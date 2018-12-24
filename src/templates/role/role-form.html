@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.role})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="row no-gutters">
+			<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+				<div class="box box-main">
+		 			<div class="box-title">
+						<i class="fa fa-database"></i> <span th:text="#{menu.role}"></span>
+					</div>
+					<form th:action="@{/data/role}" th:object="${role}" method="post" autocomplete="off">
+						<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('*')}">
+							<ul>
+		  						<li th:each="err : ${#fields.detailedErrors()}" th:utext="#{'label.' + ${err.fieldName}} + ' : ' + ${err.message}"></li>
+							</ul>
+						</div>
+						<div class="form-group" th:if="${role.id != null}">
+							<label for="id" th:text="#{label.id}"></label> 
+							<input class="form-control" type="text" th:field="*{id}" readonly="readonly" />
+						</div>
+						<div class="form-group">
+							<label for="name" th:text="#{label.name} + ' *'" th:class="${#fields.hasErrors('name')} ? 'text-danger'"></label> 
+							<input class="form-control" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'" type="text" th:placeholder="#{label.name}" th:field="*{name}" maxlength="40"/>
+						</div>
+						<div class="form-group">
+							<label th:text="#{label.authorities}"></label> 
+							<div class="box-check">
+								<div class="row">
+							  		<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" th:each="authority : ${authorities}">
+							  			<input type="checkbox" th:field="*{authorities}" th:value="${authority}" />
+								    	<label th:text="${authority.description}"></label>
+							  		</div>
+						  		</div>
+						  	</div>
+						</div>
+						<div th:replace="fragments/audit.html :: audit(${role})"></div>
+						<div class="toolbar">
+							<a class="btn btn-sm btn-secondary" th:href="@{/data/role}">
+								<i class="fa fa-long-arrow-left"></i>
+								<span th:text="#{label.back}"></span>
+							</a>
+							<button class="btn btn-sm btn-primary" type="submit">
+								<i class="fa fa-save"></i>
+								<span th:text="#{label.save}"></span>
+							</button>
+			       		</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6">
+				<div class="form-info">
+					<div class="user-management"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+	<div th:replace="fragments/template.html :: toast"></div>
+</body>
+</html>

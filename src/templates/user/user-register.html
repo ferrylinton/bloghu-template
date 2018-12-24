@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.register})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row justify-content-center align-items-center h-100">
+				<div class="col col-sm-9 col-md-7 col-lg-5 col-xl-5">
+			 		<div class="box box-main">
+						<form th:action="@{register}" th:object="${user}" method="post" autocomplete="off">
+							<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('*')}">
+								<ul>
+			  						<li th:each="err : ${#fields.detailedErrors()}" th:text="#{'label.' + ${err.fieldName}} + ' : ' + ${err.message}"></li>
+								</ul>
+							</div>
+							<div class="form-group">
+								<label for="username" th:text="#{label.username}"></label> 
+								<input class="form-control" type="text" th:field="*{username}"/>
+							</div>
+							<div class="form-group">
+								<label for="email" th:text="#{label.email}"></label> 
+								<input class="form-control" type="text" th:field="*{email}"/>
+							</div>
+							<div class="form-group">
+								<label for="password" th:text="#{label.password}"></label> 
+								<input class="form-control" type="password" th:field="*{password}"/>
+							</div>
+							<div class="toolbar">
+								<button class="btn btn-sm btn-primary" type="submit">
+									<i class="fa fa-save"></i>
+									<span th:text="#{label.register}"></span>
+								</button>
+					   		</div>
+						</form>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

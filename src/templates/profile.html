@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.user})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row justify-content-center align-items-center">
+				<div class="col col-sm-10 col-md-8 col-lg-7 col-xl-6">
+			 		<div class="box box-main">
+			 			<div class="box-title">
+							<i class="fa fa-user"></i> <span th:text="#{menu.profile}"></span>
+						</div>
+						<table class="table table-detail">
+							<tbody>
+								<tr>
+									<th width="150px" th:text="#{label.username}"></th>
+									<td> : <span th:text="${user.username}"></span></td>
+								</tr>
+								<tr>
+									<th th:text="#{label.email}"></th>
+									<td> : <span th:text="${user.email}"></span></td>
+								</tr>
+								<tr>
+									<th th:text="#{label.role}"></th>
+									<td> : <span th:text="${user.role.name}"></span></td>
+								</tr>
+								<tr>
+									<th th:text="#{label.createdDate}"></th>
+									<td> : <span th:text="${#dates.format(user.createdDate, 'dd/MM/yyyy')}"></span></td>
+								</tr>
+								<tr>
+									<th th:text="#{label.lastModifiedDate}"></th>
+									<td> : <span th:text="${#dates.format(user.lastModifiedDate, 'dd/MM/yyyy')}"></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+	<div th:replace="fragments/template.html :: toast"></div>
+</body>
+</html>

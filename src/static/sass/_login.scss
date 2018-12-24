@@ -1,0 +1,29 @@
+.login-wrapper{
+	padding-top: 100px;
+}
+.login-box{
+	width: 100%;
+	margin: 0 auto;
+}
+.login-box .text-dark, .login-box .text-success, .login-box .text-danger{
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.login-box .form-control:focus, .login-box .btn:focus {
+	outline: none;
+	box-shadow:none !important;
+}
+.login-box .btn{
+	margin-top: 30px;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: bold;
+}
+@media ( min-width : 576px) {
+	.login-box{
+		width: 400px;
+	}
+}

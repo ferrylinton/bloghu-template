@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div class="box" th:fragment="content">
+        <div class="box-title">
+            <i class="icon-tag"></i>
+            <span th:text="#{label.category}">Category</span>
+        </div>
+        <div class="box-content">
+            <th:block th:each="category : ${categories}">
+                <a th:href="@{'/' + ${category.name}}" class="inline-item">
+                    <span th:text="${category.name}"></span>
+                </a>
+            </th:block>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{loginlog.title})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="box box-main">
+			<div class="box-title">
+				<i class="fa fa-gear"></i>
+				<span th:text="#{loginlog.menu}"></span>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-sm table-hover table-bordered table-striped">
+					<thead>
+						<tr>
+							<th><span>#</span></th>
+							<th><span th:text="#{loginlog.ip}"></span></th>
+							<th><span th:text="#{loginlog.createdDate}"></span></th>
+							<th><span th:text="#{loginlog.username}"></span></th>
+							<th><span th:text="#{loginlog.loginStatus}"></span></th>
+							<th><span th:text="#{loginlog.browser}"></span></th>
+							<th><span th:text="#{loginlog.browserMajorVersion}"></span></th>
+							<th><span th:text="#{loginlog.deviceType}"></span></th>
+							<th><span th:text="#{loginlog.platformVersion}"></span></th>
+							<th><span th:text="#{loginlog.platform}"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="loginlog,rowStat : ${page}" th:if="${page.getTotalElements() > 0}">
+							<td th:text="${rowStat.count + (page.number * page.size)}"></td>
+							<td th:text="${loginlog.ip}"></td>
+							<td th:text="${#dates.format(loginlog.createdDate, 'dd/MM/yyyy hh:mm')}"></td>
+							<td th:text="${loginlog.username}"></td>
+							<td th:text="${loginlog.loginStatus}"></td>
+							<td th:text="${loginlog.browser}"></td>
+							<td th:text="${loginlog.browserMajorVersion}"></td>
+							<td th:text="${loginlog.deviceType}"></td>
+							<td th:text="${loginlog.platformVersion}"></td>
+							<td th:text="${loginlog.platform}"></td>
+						</tr>
+						<tr th:if="${page.getTotalElements() == 0}">
+							<td colspan="10" class="no-data">
+								<span th:text="#{message.no-data}"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="pager clearfix">
+				<a class="btn btn-sm btn-primary btn-shadow float-left" th:href="@{'/log/login'(page=${page.number-1},size=${page.size})}" th:classappend="${page.hasPrevious()} ? '' : 'disabled'">
+					<i class="fa fa-long-arrow-left"></i>
+					<span th:text="#{label.previous}"></span>
+				</a>
+         		<a class="btn btn-sm btn-primary btn-shadow float-right" th:href="@{'/log/login'(page=${page.number+1},size=${page.size})}" th:classappend="${page.hasNext()} ? '' : 'disabled'">
+         			<span th:text="#{label.next}"></span>
+         			<i class="fa fa-long-arrow-right"></i>
+				</a>
+       		</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

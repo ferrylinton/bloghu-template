@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:nl2br="https://github.com/bufferings/thymeleaf-extras-nl2br">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{label.error})"></head>
+<body>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="row no-gutters">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="box box-error">
+			    	<div class="error-title">
+			    		<i class="fa fa-warning"></i> <span th:text="#{label.error}"></span> : <span th:text="${statusCode}"></span> 
+			    	</div>
+			    	<div class="error-message">
+			    		<span th:text="${requestURI}"></span>
+			    		<p nl2br:text="${message}"></p>
+			    		<a class="btn btn-detail btn-danger" data-toggle="collapse" href="#error-detail" role="button" aria-expanded="false" aria-controls="error-detail" th:if="${not #strings.isEmpty(detail)}">
+   							<i class="fa fa-arrow-circle-down"></i> <span th:text="#{label.showDetail}"></span>
+ 						</a>
+			    	</div>
+			    	<div class="error-detail collapse" id="error-detail">
+					  	<p nl2br:text="${detail}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

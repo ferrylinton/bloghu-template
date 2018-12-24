@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.post})"></head>
+<body th:onload="${'onLoadPostContent(''' + postContentDTO.id + ''')'}">
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="box box-main">
+ 			<div class="box-title">
+				<i class="fa fa-database"></i> <span th:text="#{menu.post}"></span>
+			</div>
+			<form th:action="@{/data/postcontent}" th:object="${postContentDTO}" method="post">
+				<div class="row no-gutters">
+					<div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+						<div id="markdown-raw">
+					  		<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('*')}">
+								<ul>
+			  						<li th:each="err : ${#fields.detailedErrors()}" th:utext="#{'label.' + ${err.fieldName}} + ' : ' + ${err.message}"></li>
+								</ul>
+							</div>
+							<input type="hidden" th:field="*{id}" readonly="readonly" />
+							<textarea th:field="*{content}"></textarea>
+						</div>
+					  	<div id="markdown-preview"></div>
+					</div>
+					<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+						 <div id="markdown-images">
+						 	<!--  
+						 	<input id="markdown-image" type="file" placeholder="Add profile picture1" />
+							<button class="btn btn-sm btn-primary" type="button">
+								<i class="fa fa-file-image-o"></i>
+								<span th:text="#{label.save}"></span>
+							</button>
+							-->
+							<button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#upload-dialog">Upload Image</button>
+						 	<div class="row text-center text-lg-left">
+						 		<div class="col-4 col-sm-4 col-md-12 col-lg-6 col-xl-6" th:each="postImage : ${postImages}">
+									<div class="image-container">
+										<div class="image" th:with="url=@{/data/postcontent/} + ${postImage.id.id} + '/images/' + ${postImage.id.name}">
+											<img th:src="${postImage.imageText}" th:title="${postImage.id.name}">
+											<div class="toolbar">
+										   		<a class="text-danger" href="#" th:onclick="'return showDialog(\'' + ${url} + '\',\'' + #{message.delete-data} + '\')'">
+													<i class="fa fa-lg fa-trash"></i>
+												</a>
+												<a class="text-dark" href="#">
+													<i class="fa fa-lg fa-eye"></i>
+												</a>
+										  	</div>
+										</div>
+									</div>
+								</div>
+						 	</div>
+						 </div>
+					</div>
+				</div>
+			  	<div class="toolbar">
+					<a class="btn btn-sm btn-secondary" th:href="@{/data/post/form/} + ${postContentDTO.id}">
+						<i class="fa fa-long-arrow-left"></i>
+						<span th:text="#{label.back}"></span>
+					</a>
+					<button class="btn btn-sm btn-primary" type="submit">
+						<i class="fa fa-save"></i>
+						<span th:text="#{label.save}"></span>
+					</button>
+	       		</div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="fragments/dialog.html :: upload-dialog (@{/data/postimage/} + ${postContentDTO.id})"></div>
+	<div th:replace="fragments/dialog.html :: image-dialog"></div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

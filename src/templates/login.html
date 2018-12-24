@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head.html :: content(title=#{application.name} + ' : ' + #{label.login})">
+    <title>Bloghu</title>
+    <link href="./image/favicon.ico" rel="shorcut icon"/>
+    <link href="./css/main.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="login-wrapper">
+			<div class="box login-box">
+				<div th:class="${class}">
+					<span th:text="${message}"></span>
+				</div>
+			    <form th:action="@{/login}" method="post" autocomplete="off">
+			  		<div class="form-group">
+				  		<div class="input-group">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><i class="icon-user"></i></div>
+					        </div>
+					        <input class="form-control" type="text" id="username" name="username" autofocus="autofocus" autocomplete="off" placeholder="username" th:placeholder="#{label.username}"/>
+				      	</div>
+			      	</div>
+			      	<div class="form-group">
+				  		<div class="input-group">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><i class="icon-lock"></i></div>
+					        </div>
+					        <input class="form-control" type="password" id="password" name="password" autocomplete="off" placeholder="password" th:placeholder="#{label.password}"/>
+				      	</div>
+			      	</div>
+			      	<button class="btn btn-lg btn-primary btn-block" type="submit">
+			      		<i class="icon-login"></i> <span th:text="#{label.login}">Login</span>
+			      	</button>
+			    </form>
+			</div>
+		</div>
+	</div>
+	
+	    <script src="./js/scripts.js" th:src="@{/js/scripts.js}"></script>
+    
+</body>
+
+</html>

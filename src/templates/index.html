@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head.html :: content(title=#{application.name} + ' : ' + #{label.home})">
+    <title>Bloghu</title>
+    <link href="./image/favicon.ico" rel="shorcut icon" />
+    <link href="./css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar" th:replace="fragments/navbar.html :: content"></div>
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+                <div id="post" th:replace="fragments/post.html :: content (${page}, '/')"></div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                <div id="category" th:replace="fragments/category.html :: content"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/main.js" th:src="@{/js/main.js}"></script>
+</body>
+
+</html>

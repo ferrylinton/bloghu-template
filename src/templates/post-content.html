@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template.html :: head (title=#{application.name} + ' : ' + #{menu.post})"></head>
+<body>
+	<div th:replace="fragments/template.html :: loading"></div>
+	<div th:replace="fragments/template.html :: navbar"></div>
+	<div class="content">
+		<div class="row no-gutters">
+			<div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+				<div class="box box-main">
+					<div id="tutorial" th:text="${content}" th:if="${content != null}"></div>
+					<div th:if="${content == null}"></div>
+				</div>
+			</div>
+			<div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+				<div th:replace="fragments/template.html :: tags"></div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/template.html :: scripts"></div>
+</body>
+</html>

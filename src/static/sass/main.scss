@@ -1,0 +1,45 @@
+@import 'bootstrap';
+@import 'fontello';
+@import 'jquery-confirm';
+@import 'navbar';
+@import 'box';
+@import 'login';
+
+html {
+	padding: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	padding-top: 70px;
+	background-color: $gray-200;
+}
+
+@media (max-width : 576px) {
+	body {
+		padding-top: 100px;
+	}
+}
+
+.modal .btn{
+	min-width: 80px;
+}
+
+.inline-item{
+	display: inline-block;
+	margin: 0 6px 6px 0;
+	padding: 4px 9px;
+	color: $gray-700;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: solid 1px $gray-200;
+	border-radius: $border-radius;
+}
+
+a.inline-item:hover{
+	color: $blue;
+	background-color: $gray-200;
+	text-decoration: none;
+}
