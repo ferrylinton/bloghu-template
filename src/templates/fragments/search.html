@@ -2,19 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-
-	<form th:fragment="content (url)" class="float-left" th:action="${url}" method="get" onsubmit="return toolbarSearch(this);"
-	 autocomplete="off">
-		<input class="form-control keyword" id="keyword" name="keyword" th:value="${keyword}" maxlength="40" th:placeholder="#{label.keyword}"
-		 type="text">
-		<button type="submit" class="btn btn-sm btn-light">
-			<i class="icon-search"></i>
-		</button>
-		<a class="btn btn-sm btn-light" th:href="${url}">
-			<i class="icon-arrows-cw"></i>
-		</a>
-	</form>
-
+	<div th:fragment="content (url)" th:remove="tag">
+		<form class="float-left" th:action="${url}" method="get" onsubmit="return toolbarSearch(this);" autocomplete="off">
+			<input class="form-control keyword" id="keyword" name="keyword" th:value="${keyword}" maxlength="40" th:placeholder="#{label.keyword}"
+			 type="text">
+			<button type="submit" class="btn btn-sm btn-light">
+				<i class="icon-search"></i>
+			</button>
+			<a class="btn btn-sm btn-light" th:href="${url}">
+				<i class="icon-arrows-cw"></i>
+			</a>
+		</form>
+	</div>
 </body>
 
 </html>

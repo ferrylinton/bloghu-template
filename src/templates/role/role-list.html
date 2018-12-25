@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<div id="navbar" th:replace="fragments/navbar.html :: content"></div>
+	<div th:replace="fragments/navbar.html :: content"></div>
 	<div class="container-fluid">
 		<div class="box box-main">
 			<div class="box-title">
@@ -16,7 +16,7 @@
 			</div>
 			<div class="box-content">
 				<div class="toolbar clearfix">
-					<div id="search" th:replace="fragments/search.html :: search (@{/data/role})"></div>
+					<div th:replace="fragments/search.html :: search (@{/data/role})"></div>
 					<div class="float-right">
 						<a class="btn btn-sm btn-light" th:href="@{/data/role/form}">
 							<i class="icon-plus"></i>
