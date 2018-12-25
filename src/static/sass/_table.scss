@@ -9,12 +9,12 @@
 }
 
 .table{
-	border-bottom: 1px solid $gray-200;
+	border-bottom: 1px solid $gray-400;
 	margin-bottom: 5px;
 }
 .table th i{
 	font-weight: normal;
-	color: $gray-100;
+	color: $gray-500;
 }
 .table tr td.action {
 	padding: 0;
@@ -22,7 +22,7 @@
 .table tr td.action i {
     padding: 0;
     margin: 6px 0 0 0;
-    font-size: 1.2em;
+	font-size: 1.3em;
 }
 .table tr td.no-data span{
 	display: block;

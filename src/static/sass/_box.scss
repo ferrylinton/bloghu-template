@@ -1,10 +1,9 @@
 
 .box{
     margin: 0 5px 0 5px;
+	background-color: $white;
 	border-top: solid 1px $gray-300;
 	border-bottom: solid 2px $gray-400;
-    border-radius: $border-radius;
-    background-color: $white;
 }
 
 @media ( max-width : 576px) {
@@ -26,11 +25,11 @@
 }
 
 .box-title{
-    padding: 8px;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    border-bottom: solid 1px $gray-200;
-	font-size: 14px;
-	background-color: $gray-100;
+    padding: 5px 15px;
+	font-size: 16px;
+	background-color: #f8fafc;
+	border-bottom: solid 1px #f3f5f7;
+	color: $gray-900;
 }
 
 .box-title span, .box-title i{
@@ -43,7 +42,7 @@
 }
 
 .box-content{
-    padding: 15px 15px 10px 15px;
+	padding: 15px 15px 10px 15px;
 }
 
 .box-error{

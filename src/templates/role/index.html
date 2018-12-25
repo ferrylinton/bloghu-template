@@ -19,7 +19,7 @@
 					<div th:replace="fragments/search.html :: search (@{/data/role})"></div>
 					<div class="float-right">
 						<a class="btn btn-sm btn-light" th:href="@{/data/role/form}">
-							<i class="icon-plus"></i>
+							<i class="icon-plus"></i><span>Add</span>
 						</a>
 					</div>
 				</div>
@@ -28,26 +28,21 @@
 						<thead>
 							<tr>
 								<th width="40px">#</th>
-								<th th:utext="${@linkService.sortLink('name')}">Name</th>
-								<th width="60px"></th>
+								<th><a href="#">Nama <i class="icon-sort-up"></i></a></th>
+								<th width="70px"></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="role,row : ${page}" th:if="${page.getTotalElements() > 0}">
-								<td th:text="${row.count + (page.number * page.size)}">1</td>
-								<td th:text="${role.name}">Role Name</td>
+							<tr>
+								<td>1</td>
+								<td>Role Name 1</td>
 								<td class="action">
-									<a class="text-danger" href="#" th:onclick="'return showDialog(\'' + @{'/data/role/' + ${role.id}} + '\',\'' + #{message.delete-data} + '\')'">
+									<a class="text-danger" href="#">
 										<i class="icon-trash"></i>
 									</a>
-									<a class="text-dark" href="#" th:href="@{'/data/role/form/' + ${role.id}}">
+									<a class="text-dark" href="#">
 										<i class="icon-edit"></i>
 									</a>
-								</td>
-							</tr>
-							<tr th:if="${page.getTotalElements() == 0}">
-								<td colspan="3" class="no-data">
-									<span th:text="#{message.no-data}">Data tidak ditemukan</span>
 								</td>
 							</tr>
 						</tbody>

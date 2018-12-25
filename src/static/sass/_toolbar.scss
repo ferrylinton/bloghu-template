@@ -13,11 +13,12 @@
 	height: auto;
 	font-size: 12px;
     line-height: 18px;
-    border: solid 1px $gray-200;
+    border: solid 1px $gray-400;
 }
 .toolbar .btn, form .toolbar .btn{
     padding: 5px;
-    border: solid 1px $gray-200;
+	border: solid 1px $gray-400;
+	min-width: 80px;
 }
 
 .table-responsive ~ .toolbar{

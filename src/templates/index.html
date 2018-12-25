@@ -3,12 +3,12 @@
 
 <head th:replace="fragments/head.html :: content(title=#{application.name} + ' : ' + #{label.home})">
     <title>Bloghu</title>
-    <link href="./image/favicon.ico" rel="shorcut icon" />
-    <link href="./css/main.css" rel="stylesheet" />
+    <link href="/image/favicon.ico" rel="shorcut icon" />
+    <link href="/css/main.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="navbar" th:replace="fragments/navbar.html :: content"></div>
+    <div th:replace="fragments/navbar.html :: content"></div>
     <div class="container-fluid">
         <div class="row no-gutters">
             <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
@@ -19,8 +19,8 @@
             </div>
         </div>
     </div>
-    <script src="./js/main.min.js" th:src="@{/js/main.min.js}"></script>
-    <script src="./js/dummy.js" th:src="@{/js/dummy.js}"></script>
+    <script src="/js/main.min.js" th:src="@{/js/main.min.js}"></script>
+    <script src="/js/thymeleaf.js" th:src="@{/js/thymeleaf.js}"></script>
 </body>
 
 </html>

@@ -66,7 +66,7 @@ gulp.task('script1', function () {
 
 gulp.task('script2', function () {
     return gulp.src([
-        config.paths.src + '/static/js/dummy.js'
+        config.paths.src + '/static/js/thymeleaf.js'
     ])
         .pipe(gulp.dest(config.paths.target + '/static/js'))
 });
