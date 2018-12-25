@@ -1,0 +1,25 @@
+.toolbar{
+	margin: 15px 0;
+}
+.toolbar .btn em{
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.toolbar .keyword{
+	width: 170px;
+	display: inline-block;
+	margin: 0;
+	height: auto;
+	font-size: 12px;
+    line-height: 18px;
+    border: solid 1px $gray-200;
+}
+.toolbar .btn, form .toolbar .btn{
+    padding: 5px;
+    border: solid 1px $gray-200;
+}
+
+.table-responsive ~ .toolbar{
+	margin-top: 10px;	
+}

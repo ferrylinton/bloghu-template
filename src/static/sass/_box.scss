@@ -1,7 +1,6 @@
 
 .box{
     margin: 0 5px 0 5px;
-	border: solid 1px $gray-200;
 	border-top: solid 1px $gray-300;
 	border-bottom: solid 2px $gray-400;
     border-radius: $border-radius;
@@ -30,7 +29,8 @@
     padding: 8px;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     border-bottom: solid 1px $gray-200;
-    font-size: 14px;
+	font-size: 14px;
+	background-color: $gray-100;
 }
 
 .box-title span, .box-title i{

@@ -12,6 +12,7 @@ var Fragment = (function () {
         load($('#navbar'), '../../fragments/navbar.html nav');
         load($('#category'), '../../fragments/category.html .box');
         load($('#post'), '../../fragments/post.html .box');
+        load($('#search'), '../../fragments/search.html form');
     }
 
     return {
